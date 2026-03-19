@@ -1,24 +1,27 @@
 "use client";
 
 import Script from "next/script";
+import { getPopunderScripts } from "@/config/ads.config";
 
 /**
- * PopunderAd (Adsterra & Monetag)
+ * PopunderAd — Global popunder + social bar scripts.
+ * Loaded ONCE in layout.tsx via next/script with afterInteractive strategy.
  */
 export function PopunderAd() {
+    const scripts = getPopunderScripts();
+
+    if (scripts.length === 0) return null;
+
     return (
         <>
-            {/* Adsterra Popunder */}
-            <Script 
-                src="https://latherachelesscatastrophe.com/6d/1d/0b/6d1d0bbadbc34a4765692a5c1166aa20.js"
-                strategy="afterInteractive"
-            />
-            {/* Monetag Popunder */}
-            <Script 
-                src="https://5gvci.com/act/files/tag.min.js?z=10749090"
-                strategy="afterInteractive"
-                data-cfasync="false"
-            />
+            {scripts.map((src, idx) => (
+                <Script
+                    key={idx}
+                    src={src}
+                    strategy="afterInteractive"
+                    data-cfasync="false"
+                />
+            ))}
         </>
     );
 }
