@@ -61,7 +61,9 @@ export interface NetworkConfig {
  * Verification Meta Tags
  * Add tags here to verify your site ownership for ad networks (monetag, etc.) 
  */
-export const VERIFICATION_META_TAGS: Array<{name: string, content: string}> = [];
+export const VERIFICATION_META_TAGS: Array<{name: string, content: string}> = [
+    { name: "monetag", content: "08d31214674ec5910a1ea775ee142cae" }
+];
 
 export const ADS_CONFIG: Record<AdNetwork, NetworkConfig> = {
     adsterra: {
